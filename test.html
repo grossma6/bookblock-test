@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bookblock Test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="bookblock test">
+<meta name="author" content="thomesoni@gmail.com">
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="bookblock.css" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<script src="modernizr.custom.js"></script>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<header class="col-md-12">
+			<h1>Bookblock Test</h1>
+			<a href="http://tympanus.net/codrops/2012/09/03/bookblock-a-content-flip-plugin/" title="bookblock tutorial">Bookblock Tutorial</a>
+		</header>
+	</div>
+
+	<div class="row">
+	
+		<div id="bb-bookblock" class="bb-bookblock">
+			<div class="bb-item">
+				<!-- custom content -->
+				<h1>Page 0</h1>
+			</div>
+			
+			<div class="bb-item">
+				<!-- ... -->
+				<h1>Page 1</h1>
+			</div>
+    
+			<div class="bb-item">
+				<!-- ... -->
+				<h1>Page 2</h1>
+			</div>
+    
+			<div class="bb-item">
+				<!-- ... -->
+				<h1>Page 3</h1>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div class="row">
+		<nav>
+			<a id="bb-nav-prev" href="#">Previous</a>
+			<a id="bb-nav-next" href="#">Next</a>
+		</nav>
+	</div>
+
+	<div class="row">
+		<footer class="col-md-12">
+		
+		</footer>
+	</div>
+</div><!-- end container -->
+<!-- jQuery & Bootstrap -->
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="jquery.bookblock.js"></script>
+<script>
+	var Page = (function() {
+				
+		var config = {
+						$bookBlock : $( '#bb-bookblock' ),
+						$navNext : $( '#bb-nav-next' ),
+						$navPrev : $( '#bb-nav-prev' )
+		},
+					
+		init = function() {
+						config.$bookBlock.bookblock( {
+							orientation : 'horizontal',
+							speed : 700
+						} );
+						initEvents();
+		},
+					
+		initEvents = function() {
+
+			var $slides = config.$bookBlock.children();
+						
+			// add navigation events
+			config.$navNext.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'next' );
+							return false;
+			} );
+
+			config.$navPrev.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'prev' );
+							return false;
+			} );
+
+		};
+
+		return { init : init };
+
+	})();
+	
+	Page.init();
+</script>
+
+</body>
+</html>
